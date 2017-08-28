@@ -2,12 +2,10 @@
     Credits to Samer Buna
     Link to his article: https://medium.freecodecamp.org/node-js-child-processes-everything-you-need-to-know-e69498fe970a
 
-    Events that we can register handlers for with the child_process instances are:
-    - disconnect;
-    - exit;
-    - error;
-    - close;
-    - and message.
+    The spawn function launches a command in a new process and we can use it to pass that command any arguments.
+
+    By default, the spawn function does not create a shell to execute the command we pass into it.
+    Also, the spawn function uses streams instead of buffers.    
 */
 
 var spawn = require('child_process').spawn;
@@ -16,7 +14,7 @@ var spawn = require('child_process').spawn;
 var pwd = spawn('pwd');
 
 // signal is null when child exits normally
-pwd.on('exit', function (code, signal) {
+pwd.on('exit', (code, signal) => {
     console.log('child process exited with ' +
             `code ${code} and signal ${signal}`);
 });
