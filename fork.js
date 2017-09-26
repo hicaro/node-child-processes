@@ -20,6 +20,8 @@ server.on('request', (req, res) => {
         compute.send('start');
         compute.on('message', (msg) => {
             res.end(`Sum is ${msg}`);
+
+            compute.kill('SIGINT');
         });
     } else {
         res.end('OK');
